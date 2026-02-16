@@ -21,6 +21,8 @@ export function createServer(): McpServer {
         hair: z.string().optional(),
         eyes: z.string().optional(),
         clothing: z.string().optional(),
+        neon: z.string().optional().describe("Neon accent color (cyberpunk style)"),
+        accent: z.string().optional().describe("Metal/accent color (cyberpunk style)"),
       }).optional().describe("Color overrides (hex values or palette names)"),
       seed: z.string().optional().describe("Seed for deterministic random generation"),
       format: z.enum(["svg", "png"]).default("svg").describe("Output format"),

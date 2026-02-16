@@ -27,12 +27,20 @@ function resolveColors(style: AvatarStyle, colors?: AvatarColors, rng?: () => nu
     return palette[0].value;
   };
 
-  return {
+  const resolved: ResolvedColors = {
     skin: pick("skin", style.palettes.skin),
     hair: pick("hair", style.palettes.hair),
     eyes: pick("eyes", style.palettes.eyes),
     clothing: colors?.clothing ?? "#4A90D9",
   };
+
+  // Resolve any extra palette categories (e.g. neon, accent)
+  for (const key of Object.keys(style.palettes)) {
+    if (resolved[key] !== undefined) continue;
+    resolved[key] = pick(key, style.palettes[key]);
+  }
+
+  return resolved;
 }
 
 function resolveParts(style: AvatarStyle, parts?: Record<string, string>, rng?: () => number): Record<string, string> {
