@@ -1,25 +1,35 @@
 ---
 name: avatar-builder
-description: Generate composable pixel-art and cyberpunk avatars as SVG or PNG. Use when the user asks to create an avatar, profile picture, character portrait, or any kind of generated face/person image. Supports multiple styles (chibi, cyberpunk), customizable parts (hair, eyes, clothing, accessories), color palettes, and deterministic seed-based generation.
+description: Generate unique avatars instantly as SVG or PNG — no API keys, no cloud, no cost. Use when the user asks to "create an avatar", "make a profile picture", "generate a character", "pixel art portrait", "cyberpunk avatar", "team avatars", "placeholder user icons", or needs procedurally generated faces. Supports chibi and cyberpunk styles with 30+ mix-and-match parts (hair, eyes, implants, visors, clothing), neon glow effects, and deterministic seed-based generation for consistent user identities.
 ---
 
 # Avatar Builder
 
-Generate composable avatars using the MCP Avatar Builder server. Produces SVG or high-quality PNG output with fully customizable parts, colors, and styles.
+Procedural avatar generator powered by an MCP server. Instantly creates unique, composable avatars from mix-and-match SVG parts — no AI image generation, no API keys, no cloud dependency. Works fully offline.
+
+## Why Use This
+
+- **Instant** — generates in milliseconds, not seconds
+- **Free** — no API keys or credits required
+- **Offline** — runs entirely on your machine
+- **Deterministic** — same seed always produces the same avatar, perfect for user identities
+- **Scalable** — generate thousands of unique avatars from seeds (usernames, emails, IDs)
+- **Vector-first** — SVG output scales to any resolution; PNG export up to 2048px
 
 ## When to Use
 
-Use this skill when the user:
+Activate this skill when the user:
 
 - Asks to create an avatar, profile picture, or character image
-- Wants a generated face or portrait (pixel art, cyberpunk, chibi)
-- Needs a placeholder avatar or user icon
-- Asks to customize hair, eyes, clothing, or accessories on a character
-- Wants deterministic avatar generation from a username or seed
+- Needs placeholder user icons for a UI, app, or website
+- Wants to generate unique avatars for a team, user list, or leaderboard
+- Asks for pixel art, cyberpunk, or chibi character generation
+- Wants consistent, reproducible avatars derived from usernames or IDs
+- Needs SVG avatars they can embed directly in HTML or Markdown
 
 ## Setup
 
-The avatar builder is an MCP server. Ensure it's configured in your MCP settings:
+The avatar builder is an MCP server. Add to your MCP settings:
 
 ```json
 {
@@ -32,22 +42,20 @@ The avatar builder is an MCP server. Ensure it's configured in your MCP settings
 }
 ```
 
-## Available Tools
+## Tools
 
 ### `generate_avatar`
 
 Create an avatar with customizable style, parts, colors, and output format.
 
-**Parameters:**
-
-| Parameter | Type   | Default   | Description                                   |
-| --------- | ------ | --------- | --------------------------------------------- |
-| `style`   | string | `"chibi"` | Style: `chibi` or `cyberpunk`                 |
-| `options`  | object | random    | Part selections per category                  |
-| `colors`  | object | palette   | Color overrides (hex or palette name)          |
-| `seed`    | string | —         | Seed for deterministic generation              |
-| `format`  | string | `"svg"`   | Output: `svg` or `png`                         |
-| `size`    | number | `200`     | PNG size in pixels (16–2048)                   |
+| Parameter | Type   | Default   | Description                           |
+| --------- | ------ | --------- | ------------------------------------- |
+| `style`   | string | `"chibi"` | Style: `chibi` or `cyberpunk`         |
+| `options`  | object | random    | Part selections per category          |
+| `colors`  | object | palette   | Color overrides (hex or palette name) |
+| `seed`    | string | —         | Seed for deterministic generation     |
+| `format`  | string | `"svg"`   | Output: `svg` or `png`                |
+| `size`    | number | `200`     | PNG size in pixels (16–2048)          |
 
 ### `list_styles`
 
@@ -61,36 +69,43 @@ List available parts and variants for a style, optionally filtered by category.
 
 ### Chibi (200x200)
 
-Simple, cute style. Categories: `head`, `eyes`, `eyebrows`, `mouth`, `hair_back`, `hair_front`, `clothing`, `accessories`.
+Cute, minimal pixel-art style — great for friendly profile pictures and placeholder icons.
 
-Colors: `skin`, `hair`, `eyes`, `clothing`.
+**8 categories:** head (3), eyes (3), eyebrows (3), mouth (3), hair_back (3), hair_front (3), clothing (3), accessories (3)
+
+**Colors:** `skin` (6 tones), `hair` (8 colors), `eyes` (6 colors), `clothing`
 
 ### Cyberpunk (400x400)
 
-High-detail style with neon glow effects, dark backgrounds, and cybernetic parts. Categories: `background`, `head`, `eyes`, `eyebrows`, `mouth`, `hair_back`, `hair_front`, `face_mods`, `clothing`, `accessories`, `effects`.
+High-detail style with SVG filter effects (neon glow, scanlines, noise grain), gradient fills, and cybernetic parts. Dark sci-fi aesthetic with 11 composable layers.
 
-Colors: `skin`, `hair`, `eyes`, `clothing`, `neon`, `accent`.
+**11 categories, 34 variants:**
 
-**Cyberpunk-specific parts:**
+| Category    | Variants                                |
+| ----------- | --------------------------------------- |
+| background  | `circuit_grid` `rain_city` `dark_void`  |
+| head        | `angular` `scarred` `implanted`         |
+| eyes        | `led` `visor` `cyber`                   |
+| eyebrows    | `sharp` `none`                          |
+| mouth       | `neutral` `respirator` `smirk`          |
+| hair        | `mohawk` `undercut` `wired` `shaved`    |
+| face_mods   | `neural_port` `led_tattoo` `jaw_plate`  |
+| clothing    | `techwear` `tactical_vest` `collar_rig` |
+| accessories | `none` `headset` `holo_visor`           |
+| effects     | `none` `scanlines` `glitch`             |
 
-- **background**: `circuit_grid`, `rain_city`, `dark_void`
-- **eyes**: `led`, `visor`, `cyber`
-- **mouth**: `neutral`, `respirator`, `smirk`
-- **hair**: `mohawk`, `undercut`, `wired`, `shaved`
-- **face_mods**: `neural_port`, `led_tattoo`, `jaw_plate`
-- **clothing**: `techwear`, `tactical_vest`, `collar_rig`
-- **accessories**: `none`, `headset`, `holo_visor`
-- **effects**: `none`, `scanlines`, `glitch`
+**Extra colors:** `neon` (6 neon colors for glow effects), `accent` (4 metal tones for cybernetic parts)
 
 ## Instructions
 
-1. **Start by asking** what style the user wants (or pick based on context)
-2. **Use `list_styles`** if you need to show all options
-3. **Generate** with `generate_avatar` — use `seed` for reproducible results
-4. **For PNG output**, set `format: "png"` and `size: 800` for high quality
-5. **Customize** by passing specific `options` and `colors`
+1. If the user doesn't specify a style, pick based on context — `chibi` for friendly/casual, `cyberpunk` for dark/techy
+2. For a quick unique avatar, just pass a `seed` — the RNG picks all parts and colors
+3. For full control, specify `options` and `colors` explicitly
+4. Default to `format: "png"` and `size: 800` when the user wants to see the result visually
+5. Use `list_parts` with a category filter to show the user what's available before customizing
+6. When generating avatars for multiple users, use their username or email as the `seed` for consistent identity
 
-### Example: Quick Random Avatar
+### Quick: Random Avatar from Seed
 
 ```json
 {
@@ -101,7 +116,7 @@ Colors: `skin`, `hair`, `eyes`, `clothing`, `neon`, `accent`.
 }
 ```
 
-### Example: Fully Customized Cyberpunk
+### Full Control: Customized Cyberpunk Character
 
 ```json
 {
@@ -110,6 +125,7 @@ Colors: `skin`, `hair`, `eyes`, `clothing`, `neon`, `accent`.
     "background": "rain_city",
     "head": "angular",
     "eyes": "led",
+    "eyebrows": "sharp",
     "mouth": "smirk",
     "hair_back": "mohawk",
     "hair_front": "mohawk",
@@ -120,17 +136,31 @@ Colors: `skin`, `hair`, `eyes`, `clothing`, `neon`, `accent`.
   "colors": {
     "neon": "hot-pink",
     "hair": "electric-blue",
-    "eyes": "cyan"
+    "eyes": "cyan",
+    "skin": "pale-tech"
   },
   "format": "png",
   "size": 800
 }
 ```
 
+### Batch: Team Avatars from Names
+
+Generate consistent avatars for a list of users by seeding with their names:
+
+```json
+{"style": "cyberpunk", "seed": "alice", "format": "png", "size": 256}
+{"style": "cyberpunk", "seed": "bob", "format": "png", "size": 256}
+{"style": "cyberpunk", "seed": "carol", "format": "png", "size": 256}
+```
+
+Each person always gets the same avatar. Change the seed, get a different face.
+
 ## Tips
 
-- Use palette **names** (e.g. `"hot-pink"`, `"chrome"`) or **hex values** (e.g. `"#FF2D95"`) for colors
-- The `seed` parameter produces identical output every time — great for user avatars derived from usernames
-- For cyberpunk, `neon` controls glow/accent color and `accent` controls metal/mechanical surfaces
-- `effects: "scanlines"` adds a CRT overlay; `"glitch"` adds color displacement bars
-- Omitted parts are randomly selected; use `seed` to keep random selections stable
+- Use palette **names** (`"hot-pink"`, `"chrome"`, `"electric-blue"`) or **hex values** (`"#FF2D95"`) for colors
+- The `seed` parameter is the key to deterministic generation — same seed = same avatar, every time
+- For cyberpunk, `neon` controls glow color on eyes/tattoos/effects, `accent` controls metal surfaces on implants/armor
+- `effects: "scanlines"` adds a CRT overlay; `"glitch"` adds color displacement bars and vignette
+- Combine `face_mods` with `accessories` for maximum cyberpunk detail (e.g. `led_tattoo` + `holo_visor`)
+- SVG output can be embedded directly in HTML — no file hosting needed
