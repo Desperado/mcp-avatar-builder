@@ -7,7 +7,7 @@ import { rasterize } from "./rasterizer.js";
 export function createServer(): McpServer {
   const server = new McpServer({
     name: "mcp-avatar-builder",
-    version: "0.1.0",
+    version: "0.2.0",
   });
 
   server.tool(
@@ -22,7 +22,10 @@ export function createServer(): McpServer {
         eyes: z.string().optional(),
         clothing: z.string().optional(),
         neon: z.string().optional().describe("Neon accent color (cyberpunk style)"),
-        accent: z.string().optional().describe("Metal/accent color (cyberpunk style)"),
+        accent: z.string().optional().describe("Metal/accent color (cyberpunk, retro styles)"),
+        blood: z.string().optional().describe("Blood/wound color (horror style)"),
+        atmosphere: z.string().optional().describe("Atmospheric accent color (horror style)"),
+        retro: z.string().optional().describe("Retro highlight color (retro style)"),
       }).optional().describe("Color overrides (hex values or palette names)"),
       seed: z.string().optional().describe("Seed for deterministic random generation"),
       format: z.enum(["svg", "png"]).default("svg").describe("Output format"),

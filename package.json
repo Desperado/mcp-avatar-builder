@@ -1,20 +1,31 @@
 {
   "name": "mcp-avatar-builder",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MCP server that generates composable avatars via SVG layer composition",
   "type": "module",
   "bin": {
     "mcp-avatar-builder": "./build/index.js"
   },
+  "files": [
+    "build",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "node build/index.js",
     "lint": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
   },
-  "keywords": ["mcp", "avatar", "svg", "generator"],
+  "keywords": ["mcp", "avatar", "svg", "generator", "cyberpunk", "chibi", "horror", "retro", "profile-picture"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Desperado/mcp-avatar-builder.git"
+  },
+  "homepage": "https://github.com/Desperado/mcp-avatar-builder#readme",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.26.0",

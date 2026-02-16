@@ -57,7 +57,7 @@ Generate a composable avatar with customizable parts and colors.
 
 | Parameter | Type   | Default   | Description                          |
 | --------- | ------ | --------- | ------------------------------------ |
-| `style`   | string | `"chibi"` | Style: `chibi` or `cyberpunk`        |
+| `style`   | string | `"chibi"` | Style: `chibi`, `cyberpunk`, `horror`, `retro` |
 | `options`  | object | random    | Part selections per category         |
 | `colors`  | object | palette   | Color overrides (hex or palette name)|
 | `seed`    | string | —         | Seed for deterministic generation    |
@@ -143,6 +143,62 @@ High-detail style with neon glow effects, dark backgrounds, and cybernetic parts
 | clothing      | techwear, tactical_vest, collar_rig          |
 | accessories   | none, headset, holo_visor                    |
 | effects       | none, scanlines, glitch                      |
+
+### Horror (400x400)
+
+Dark survival-horror style with sickly skin tones, wound effects, and atmospheric backgrounds. Inspired by Resident Evil, Silent Hill, and The Last of Us.
+
+**Categories:** background, head, eyes, eyebrows, mouth, hair_back, hair_front, face_mods, clothing, accessories, effects
+
+**Palettes:**
+- **Skin**: pallid, gray-green, jaundiced, ashen, bruised, corpse
+- **Hair**: matted-black, dirty-brown, gray, blood-red, white, rust
+- **Eyes**: amber, bloodshot-blue, milky, green-sick, red, dead-gray
+- **Blood**: crimson, dark-red, black-blood, dried-brown, arterial, infected-green
+- **Atmosphere**: steel, rust, concrete, moss
+
+**Parts:**
+
+| Category      | Variants                                     |
+| ------------- | -------------------------------------------- |
+| background    | lab_corridor, hive, dark_forest              |
+| head          | gaunt, scarred, infected                     |
+| eyes          | bloodshot, mutant, hollow                    |
+| eyebrows      | thin, furrowed, none                         |
+| mouth         | grimace, gas_mask, stitched                  |
+| hair          | military, messy, slicked                     |
+| face_mods     | bite_wound, stitches, infection              |
+| clothing      | tactical_vest, lab_coat, jumpsuit            |
+| accessories   | none, dog_tags, herb_vial                    |
+| effects       | none, fog, blood_splatter                    |
+
+### Retro (400x400)
+
+Warm 1980s nostalgia style inspired by Stranger Things, The Goonies, and Stand By Me. Sunset backgrounds, feathered hair, denim jackets, and VHS effects.
+
+**Categories:** background, head, eyes, eyebrows, mouth, hair_back, hair_front, face_mods, clothing, accessories, effects
+
+**Palettes:**
+- **Skin**: porcelain, fair, warm, tan, brown, deep
+- **Hair**: black, dark-brown, brown, auburn, ginger, blonde, platinum, strawberry
+- **Eyes**: brown, hazel, green, blue, gray, amber
+- **Retro**: sunset-orange, neon-pink, electric-blue, arcade-yellow, synth-purple, miami-teal
+- **Accent**: denim, leather, chrome, matte-black
+
+**Parts:**
+
+| Category      | Variants                                     |
+| ------------- | -------------------------------------------- |
+| background    | sunset, arcade, suburban                     |
+| head          | round, square_jaw, soft                      |
+| eyes          | wide, determined, cool                       |
+| eyebrows      | thick, thin, arched                          |
+| mouth         | grin, bubblegum, neutral                     |
+| hair          | feathered, mullet, shaved, ponytail          |
+| face_mods     | nosebleed, freckles, band_aid                |
+| clothing      | denim_jacket, hawkins_tee, leather_jacket    |
+| accessories   | none, headband, shades                       |
+| effects       | none, vhs_lines, warm_glow                   |
 
 ## Architecture
 

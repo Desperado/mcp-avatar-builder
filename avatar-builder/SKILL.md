@@ -1,6 +1,6 @@
 ---
 name: avatar-builder
-description: Generate unique avatars instantly as SVG or PNG — no API keys, no cloud, no cost. Use when the user asks to "create an avatar", "make a profile picture", "generate a character", "pixel art portrait", "cyberpunk avatar", "team avatars", "placeholder user icons", or needs procedurally generated faces. Supports chibi and cyberpunk styles with 30+ mix-and-match parts (hair, eyes, implants, visors, clothing), neon glow effects, and deterministic seed-based generation for consistent user identities.
+description: Generate unique avatars instantly as SVG or PNG — no API keys, no cloud, no cost. Use when the user asks to "create an avatar", "make a profile picture", "generate a character", "pixel art portrait", "cyberpunk avatar", "horror character", "retro 80s avatar", "team avatars", "placeholder user icons", or needs procedurally generated faces. 4 styles (chibi, cyberpunk, horror, retro) with 100+ mix-and-match parts, SVG filter effects (neon glow, fog, VHS scanlines), and deterministic seed-based generation for consistent user identities.
 ---
 
 # Avatar Builder
@@ -50,7 +50,7 @@ Create an avatar with customizable style, parts, colors, and output format.
 
 | Parameter | Type   | Default   | Description                           |
 | --------- | ------ | --------- | ------------------------------------- |
-| `style`   | string | `"chibi"` | Style: `chibi` or `cyberpunk`         |
+| `style`   | string | `"chibi"` | Style: `chibi`, `cyberpunk`, `horror`, `retro` |
 | `options`  | object | random    | Part selections per category          |
 | `colors`  | object | palette   | Color overrides (hex or palette name) |
 | `seed`    | string | —         | Seed for deterministic generation     |
@@ -96,9 +96,51 @@ High-detail style with SVG filter effects (neon glow, scanlines, noise grain), g
 
 **Extra colors:** `neon` (6 neon colors for glow effects), `accent` (4 metal tones for cybernetic parts)
 
+### Horror (400x400)
+
+Dark survival-horror style with sickly skin, wounds, fog, and blood effects. Think Resident Evil, Silent Hill, The Last of Us.
+
+**11 categories, 33 variants:**
+
+| Category    | Variants                                |
+| ----------- | --------------------------------------- |
+| background  | `lab_corridor` `hive` `dark_forest`     |
+| head        | `gaunt` `scarred` `infected`            |
+| eyes        | `bloodshot` `mutant` `hollow`           |
+| eyebrows    | `thin` `furrowed` `none`                |
+| mouth       | `grimace` `gas_mask` `stitched`         |
+| hair        | `military` `messy` `slicked`            |
+| face_mods   | `bite_wound` `stitches` `infection`     |
+| clothing    | `tactical_vest` `lab_coat` `jumpsuit`   |
+| accessories | `none` `dog_tags` `herb_vial`           |
+| effects     | `none` `fog` `blood_splatter`           |
+
+**Extra colors:** `blood` (6 wound/blood tones), `atmosphere` (4 environmental tones)
+
+### Retro (400x400)
+
+Warm 1980s nostalgia style — Stranger Things, The Goonies, Stand By Me. Sunset backgrounds, feathered hair, VHS effects.
+
+**11 categories, 35 variants:**
+
+| Category    | Variants                                     |
+| ----------- | -------------------------------------------- |
+| background  | `sunset` `arcade` `suburban`                 |
+| head        | `round` `square_jaw` `soft`                  |
+| eyes        | `wide` `determined` `cool`                   |
+| eyebrows    | `thick` `thin` `arched`                      |
+| mouth       | `grin` `bubblegum` `neutral`                 |
+| hair        | `feathered` `mullet` `shaved` `ponytail`     |
+| face_mods   | `nosebleed` `freckles` `band_aid`            |
+| clothing    | `denim_jacket` `hawkins_tee` `leather_jacket`|
+| accessories | `none` `headband` `shades`                   |
+| effects     | `none` `vhs_lines` `warm_glow`               |
+
+**Extra colors:** `retro` (6 warm/neon tones), `accent` (4 material tones)
+
 ## Instructions
 
-1. If the user doesn't specify a style, pick based on context — `chibi` for friendly/casual, `cyberpunk` for dark/techy
+1. If the user doesn't specify a style, pick based on context — `chibi` for friendly/casual, `cyberpunk` for dark/techy, `horror` for dark/survival themes, `retro` for 80s/nostalgic vibes
 2. For a quick unique avatar, just pass a `seed` — the RNG picks all parts and colors
 3. For full control, specify `options` and `colors` explicitly
 4. Default to `format: "png"` and `size: 800` when the user wants to see the result visually
@@ -163,4 +205,6 @@ Each person always gets the same avatar. Change the seed, get a different face.
 - For cyberpunk, `neon` controls glow color on eyes/tattoos/effects, `accent` controls metal surfaces on implants/armor
 - `effects: "scanlines"` adds a CRT overlay; `"glitch"` adds color displacement bars and vignette
 - Combine `face_mods` with `accessories` for maximum cyberpunk detail (e.g. `led_tattoo` + `holo_visor`)
+- For horror, `blood` controls wound/stain colors, `atmosphere` controls environmental tones (steel, rust, concrete, moss)
+- For retro, `retro` controls highlight colors (sunset-orange, neon-pink), `accent` controls material tones (denim, leather)
 - SVG output can be embedded directly in HTML — no file hosting needed
