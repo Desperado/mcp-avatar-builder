@@ -1,0 +1,29 @@
+{
+  "name": "mcp-avatar-builder",
+  "version": "0.1.0",
+  "description": "MCP server that generates composable avatars via SVG layer composition",
+  "type": "module",
+  "bin": {
+    "mcp-avatar-builder": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node build/index.js",
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": ["mcp", "avatar", "svg", "generator"],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "@resvg/resvg-js": "^2.6.2",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}
