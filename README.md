@@ -200,6 +200,23 @@ Warm 1980s nostalgia style inspired by Stranger Things, The Goonies, and Stand B
 | accessories   | none, headband, shades                       |
 | effects       | none, vhs_lines, warm_glow                   |
 
+## Examples
+
+The `examples/` directory has runnable scripts showing how to use the avatar builder programmatically (no MCP server needed):
+
+```bash
+npm run build                              # build first
+
+node examples/basic-generation.mjs         # one avatar per style → SVG files
+node examples/custom-cyberpunk.mjs         # fully customized cyberpunk avatar
+node examples/team-avatars.mjs             # deterministic seed-based team avatars
+node examples/png-export.mjs               # export as PNG at multiple sizes
+node examples/list-all-parts.mjs           # print all styles, parts, and palettes
+node examples/list-all-parts.mjs retro     # filter to a single style
+```
+
+Output goes to `examples/output/`. See the source for the programmatic API (`compose`, `getStyle`, `listStyles`, `rasterize`).
+
 ## Architecture
 
 Avatars are composed from SVG fragment layers stacked in z-order. Each style defines its own categories (head, eyes, hair, etc.), color palettes, and part variants. The composer assembles fragments into a complete SVG, and an optional rasterizer converts to PNG via resvg.

@@ -3,6 +3,7 @@ import { chibiStyle } from "./chibi/index.js";
 import { cyberpunkStyle } from "./cyberpunk/index.js";
 import { horrorStyle } from "./horror/index.js";
 import { retroStyle } from "./retro/index.js";
+import { coffeetalkStyle } from "./coffeetalk/index.js";
 
 const registry = new Map<string, AvatarStyle>();
 
@@ -14,6 +15,7 @@ register(chibiStyle);
 register(cyberpunkStyle);
 register(horrorStyle);
 register(retroStyle);
+register(coffeetalkStyle);
 
 export function getStyle(name: string): AvatarStyle | undefined {
   return registry.get(name);
